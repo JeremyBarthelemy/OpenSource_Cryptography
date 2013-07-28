@@ -1,3 +1,9 @@
+/*Author: Jeremy Barthelemy
+ *Contact: J.L.Barthel@gmail.com
+ *Note: This code was not debugged!  There could be possible issues.
+ *I ran a few simple test cases that worked, so use at your own risk!
+ *If you find any mistakes, please let me know.  Thanks!
+ */
 import java.util.*;
 
 public class Mod_RTL_Exp
