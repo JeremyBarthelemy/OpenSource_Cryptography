@@ -1,0 +1,2 @@
+git will only add folders with something in them.
+we are organizing the folders so for now this placeholder exists
