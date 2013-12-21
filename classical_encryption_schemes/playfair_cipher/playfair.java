@@ -3,6 +3,7 @@
  *This is open-source for educational purposes!  This cipher can be broken
  *extremely easily with modern computers so don't actually use it for encrypting
  *anything other than for fun and learning! :)
+ *Possible addition: include passing this to a file or reading from a file
  */
 import java.io.*;
 import java.util.Scanner;
@@ -13,8 +14,6 @@ public class playfair
 	{
 		char[] alphabetUpper = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
 		 + 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-		//char[] alphabetLower = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-		// + 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 		int counter = 0; //used for counting parsing the keyword string
 		String optimizedKeyword = " "; //used for storing the value of the improved keyword text
 		
@@ -28,13 +27,8 @@ public class playfair
 		System.out.println("What is your keyword?");
 		String keywordFromUser = scan.nextLine();
 		keywordFromUser = keywordFromUser.toUpperCase(); //convert to upper case
-/*************************GENERATING THE KEY FROM THE GIVEN KEYWORD********************************************/
-		/*Will need to turn the text that was read into a valid string for making the playfair square
-		 *1. Need to add handling to remove spaces and strange character inputs (DONE)
-		 *2. Must remove duplicates of letters
-		 *3. Build the square from this
-		 */
-		 
+/*************************OPTIMIZING THE USER INPUT FOR KEY GENERATION********************************************/
+
 		System.out.println("Your keyword before 'optimizing' it: " + keywordFromUser);
 		//remove all letters and characters which are not in the English langauge
 		//can perhaps scan through english alphabet array?
@@ -64,20 +58,23 @@ public class playfair
 		}
 		System.out.println("This is your optimized keyword: " + optimizedKeyword);
 
+
+/*****************************BUILDING THE PLAYFAIR SQUARE (THE KEY) FROM THIS KEYWORD*********************************/
+
+
+/*****************************USER ENTERS MESSAGE TEXT*****************************************************************/
 		//Request the message
 		System.out.println("What is your message to encrypt/decipher?");
-		String messageText = scan.next();
-		
-		
+		String messageText = scan.next();		
+
+/*******************************ENCRYPTION OR DECRYPTION SELECT*******************************************************/		
 		//Encryption or Decryption?
 		System.out.println("Encryption = 1, Decryption = 2");
 		int test = scan.nextInt();
 		System.out.println(test);
 
+/*******************************APPLY THE KEY TO THE MESSAGE FOR ENCRYPTION / DECRYPTION******************************/
 		//Apply key to the message and encrypt / decrypt
-		
-		//Possible additions include passing this to a file or reading from a file
-
 
 	}
 }
