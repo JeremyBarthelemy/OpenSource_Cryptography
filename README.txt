@@ -1,8 +1,6 @@
-Project currently UNDER HEAVY CONSTRUCTION!!!
+Under Way: Simple Playfair Cipher in Java
 More to come very soon!
 
-Sandbox is to be used for posting test codes and for training/practice (i.e. teaching each other
-how to use tools or program in various different languages and such).
 Miscellaneous Crypto Tools will eventually be combined with greenflash to make an easily
 accessible crypto suite! :)
 

@@ -1,1 +1,0 @@
-Alright!  So in an effort to get some of this started, we will do some simple classic ciphers!
