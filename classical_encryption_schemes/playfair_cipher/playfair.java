@@ -13,10 +13,10 @@ public class playfair
 	{
 		char[] alphabetUpper = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
 		 + 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-		char[] alphabetLower = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-		 + 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+		//char[] alphabetLower = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+		// + 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 		int counter = 0; //used for counting parsing the keyword string
-		String optimizedKeyword = ""; //used for storing the value of the improved keyword text
+		String optimizedKeyword = " "; //used for storing the value of the improved keyword text
 		
 
 		System.out.println("Playfair Cipher in Java");
@@ -27,6 +27,7 @@ public class playfair
 		//Request the keyword
 		System.out.println("What is your keyword?");
 		String keywordFromUser = scan.nextLine();
+		keywordFromUser = keywordFromUser.toUpperCase(); //convert to upper case
 /*************************GENERATING THE KEY FROM THE GIVEN KEYWORD********************************************/
 		/*Will need to turn the text that was read into a valid string for making the playfair square
 		 *1. Need to add handling to remove spaces and strange character inputs (DONE)
@@ -43,15 +44,17 @@ public class playfair
 			for(int scanAlpha = 0; scanAlpha < alphabetUpper.length; scanAlpha++)
 			{
 				//System.out.println(keywordFromUser.charAt(counter) + " vs. " + alphabetUpper[scanAlpha]);
-				if(keywordFromUser.charAt(counter) == alphabetUpper[scanAlpha]) //uppercase scan
+
+				if(optimizedKeyword.indexOf(keywordFromUser.charAt(counter)) != -1)
+				{
+					//don't re-append the character to the optimized keyword string
+				}
+				else if(keywordFromUser.charAt(counter) == alphabetUpper[scanAlpha]) //uppercase scan
 				{
 					optimizedKeyword += alphabetUpper[scanAlpha]; //append the good character to our new keyword!
 					//in this case we add the letter to the new keyword string
 				}
-				else if(keywordFromUser.charAt(counter) == alphabetLower[scanAlpha])
-				{
-					optimizedKeyword += alphabetLower[scanAlpha];
-				}
+				else{}//don't append the character as it is not a valid character
 			}
 			counter++;
 			//use the string.charAt(#) function to read through the string and if the char is not in the
