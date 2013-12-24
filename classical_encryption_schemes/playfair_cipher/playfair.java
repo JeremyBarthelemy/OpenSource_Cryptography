@@ -105,47 +105,28 @@ public class playfair
 /*****************************USER ENTERS MESSAGE TEXT, OPTIMIZED MESSAGE*********************************************/
 		//Request the message
 		System.out.println("What is your message to encrypt/decipher?");
-		String messageText = scan.next();
+		String messageText = scan.nextLine();
 		messageText = messageText.toUpperCase();
 		String optimizedMessage = "";
-		char[] alphabet2 = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-		
-		counter = 0;
-		while(counter < messageText.length()) //reading through keyword and comparing to alphabet
-		{
-			for(int scanAlpha = 0; scanAlpha < alphabet2.length; scanAlpha++)
-			{
-				if(messageText.charAt(counter) == alphabet2[scanAlpha]) //scan alphabet
-				{
-					if(alphabet2[scanAlpha] == 'J')
-					{
-						alphabet2[scanAlpha] = 'I'; // set all the J values to I 
-					}
-					optimizedMessage += alphabet2[scanAlpha];
-				}
-				else{}//don't append the character as it is not a valid character
-			}
-			counter++;
-		}
+		optimizedMessage = messageText.replace(String.valueOf("J"), "I");;
+
 		System.out.println("This is your optimized message: " + optimizedMessage);
 		
-		
-		
-		
-		
+
+
 
 /*******************************ENCRYPTION OR DECRYPTION SELECT*******************************************************/		
 		//Encryption or Decryption?
-		System.out.println("Encryption = 1, Decryption = 2");
-		int test = scan.nextInt();
-		System.out.println(test);
+		//System.out.println("Encryption = 1, Decryption = 2");
+		//int test = scan.nextInt();
+		//System.out.println(test);
 
 /*****************************************ENCRYPTION******************************************************************/
 		//need to optimize the message by:
 		//prepare messageText for encryption by:
 		//replacing repeated digraphs with appropriate new message text before encrypting
-		String nextDigraph = ""; //keeps track of the next digraph to encrypt
-		System.out.println("Your message to encrypt: " + optimizedMessage);
+		//String nextDigraph = ""; //keeps track of the next digraph to encrypt
+		//System.out.println("Your message to encrypt: " + optimizedMessage);
 		/*1. Optimize the message for encryption by
 		 *1a. Organizing the message into digraphs
 		 *1b. Replacing repeated letters
