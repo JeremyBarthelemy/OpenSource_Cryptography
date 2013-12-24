@@ -4,7 +4,12 @@
  *extremely easily with modern computers so don't actually use it for encrypting
  *anything other than for fun and learning! :)
  *Possible addition: include passing this to a file or reading from a file
- *Version 0.003: Have optimized the message, must now build encryption and later decryption
+ *Version: 0.004
+ *Fixes:
+ *1. Clean the messages such that invalid characters are removed (DONE)
+ *2. Optimize the message such that repeated characters are replaced accordingly (In progress, some issues)
+ *3. Add the encryption
+ *4. Add the decryption
  */
 import java.io.*;
 import java.util.Scanner;
@@ -108,37 +113,81 @@ public class playfair
 		String messageText = scan.nextLine();
 		messageText = messageText.toUpperCase();
 		String optimizedMessage = "";
-		optimizedMessage = messageText.replace(String.valueOf("J"), "I");;
+		String messageWithoutJ = messageText.replace(String.valueOf("J"), "I");;
+		
+		counter = 0;
+		while(counter < messageWithoutJ.length()) //reading through message and comparing to alphabet
+		{
+			for(int scanAlpha = 0; scanAlpha < alphabet.length; scanAlpha++)
+			{
+				if(messageWithoutJ.charAt(counter) == alphabet[scanAlpha]) //uppercase scan
+				{
+					//System.out.println("Compare!" + optimizedMessage.charAt(counter) + ":::" + alphabet[scanAlpha]);
+					optimizedMessage += alphabet[scanAlpha]; //append the good character to our new message!
+					//in this case we add the letter to the new message string
+				}
+				else{}//don't append the character as it is not a valid character
+			}
+			counter++;
+		}
 
 		System.out.println("This is your optimized message: " + optimizedMessage);
 		
 
 
-
 /*******************************ENCRYPTION OR DECRYPTION SELECT*******************************************************/		
 		//Encryption or Decryption?
-		//System.out.println("Encryption = 1, Decryption = 2");
-		//int test = scan.nextInt();
-		//System.out.println(test);
+		System.out.println("Please enter 1 for Encryption or 2 for Decryption: ");
+		int decision = scan.nextInt();
 
 /*****************************************ENCRYPTION******************************************************************/
-		//need to optimize the message by:
-		//prepare messageText for encryption by:
-		//replacing repeated digraphs with appropriate new message text before encrypting
-		//String nextDigraph = ""; //keeps track of the next digraph to encrypt
-		//System.out.println("Your message to encrypt: " + optimizedMessage);
-		/*1. Optimize the message for encryption by
-		 *1a. Organizing the message into digraphs
-		 *1b. Replacing repeated letters
-		 *2. Encrypt using the following rules:
-		 *2a. if letters in same row, shift right by one position (with wraparound)
-		 *2b. if letters in same column, shift down by one position (with wraparound)
-		 *2c. if letters are in neither the same row nor the same column, read in "box fashion"
-		 */
+		if(decision == 1)
+		{
+			String finalMessage = ""; //our message without repeated characters in a digraph
+			String nextDigraph = ""; //keeps track of the next digraph to encrypt
+			System.out.println("Your message to encrypt: " + optimizedMessage);
+
+			//FIRST must optimize message by adding an X at the end if there are an odd number of characters
+			if((optimizedMessage.length() % 2) == 1) //if there are an odd number of characters,
+			{
+				//append the 'X' character to the end so we have an even number of individual characters
+				optimizedMessage += 'X';
+				//System.out.println("new optimized message: " + optimizedMessage);
+			}
+			//SECOND we must replace repeated letters in a digraph as such: LL becomes two new digraphs - LX followed by L and the next char
+			//step through optimized message for two characters...if they are not the same, append them to finalMessage
+			//if they are the same, fix and then append
+			//int finalCount = 0;
+			while(optimizedMessage.length() > 0)
+			{
+				if(optimizedMessage.charAt(0) == optimizedMessage.charAt(1))//repeated characters in a digraph
+				{
+					System.out.println("Two repeated characters!");
+					optimizedMessage = optimizedMessage.replace(String.valueOf(optimizedMessage.charAt(0)),"");
+					optimizedMessage = optimizedMessage.replace(String.valueOf(optimizedMessage.charAt(0)),"");
+				}
+				else //two different characters in a digraph
+				{
+					finalMessage += optimizedMessage.charAt(0);
+					finalMessage += optimizedMessage.charAt(1);
+					optimizedMessage = optimizedMessage.replace(String.valueOf(optimizedMessage.charAt(0)),"");
+					optimizedMessage = optimizedMessage.replace(String.valueOf(optimizedMessage.charAt(0)),"");
+					System.out.println("FF: " + finalMessage);
+				}
+			}
+			System.out.println("The final message to encrypt is: " + finalMessage);
+			/*2. Encrypt using the following rules:
+			*2a. if letters in same row, shift right by one position (with wraparound)
+			*2b. if letters in same column, shift down by one position (with wraparound)
+			*2c. if letters are in neither the same row nor the same column, read in "box fashion"
+			*/
+		}
 		
 /*****************************************DECRYPTION******************************************************************/
-
+		else if(decision ==2)
+		{
 		//optimize the message text for display such that repeated letters show properly
+		}
 
 /*******************************APPLY THE KEY TO THE MESSAGE FOR ENCRYPTION / DECRYPTION******************************/
 		//Apply key to the message and encrypt / decrypt
