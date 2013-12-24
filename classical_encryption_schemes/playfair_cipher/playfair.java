@@ -4,7 +4,7 @@
  *extremely easily with modern computers so don't actually use it for encrypting
  *anything other than for fun and learning! :)
  *Possible addition: include passing this to a file or reading from a file
- *Version 0.002: Must read in and optimize message (repeat of letters), encipher/decipher
+ *Version 0.003: Have optimized the message, must now build encryption and later decryption
  */
 import java.io.*;
 import java.util.Scanner;
@@ -13,9 +13,9 @@ public class playfair
 {
 	public static void main(String[] args)
 	{
-		char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+		char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L',
 		 + 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-		String alphaToRead = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; //string used for knowing the letters not in the keyword for placing into the playfair square
+		String alphaToRead = "ABCDEFGHIKLMNOPQRSTUVWXYZ"; //string used for knowing the letters not in the keyword for placing into the playfair square
 		int counter = 0; //used for counting parsing the keyword string
 		String optimizedKeyword = ""; //used for storing the value of the improved keyword text
 		
@@ -47,11 +47,6 @@ public class playfair
 				}
 				else if(keywordFromUser.charAt(counter) == alphabet[scanAlpha]) //uppercase scan
 				{
-					alphaToRead = alphaToRead.replace(String.valueOf(alphabet[scanAlpha]), "");
-					if(alphabet[scanAlpha] == 'J')
-					{
-						alphabet[scanAlpha] = 'I'; // set all the J values to I 
-					}
 					alphaToRead = alphaToRead.replace(String.valueOf(alphabet[scanAlpha]), "");
 					//remove all occurrences of these letters (twice bc of i and j...I know not coded well but gets job done for this example)
 					optimizedKeyword += alphabet[scanAlpha]; //append the good character to our new keyword!
@@ -106,10 +101,34 @@ public class playfair
 			}
 		}
 		
-/*****************************USER ENTERS MESSAGE TEXT*****************************************************************/
+/*****************************USER ENTERS MESSAGE TEXT, OPTIMIZED MESSAGE*********************************************/
 		//Request the message
 		System.out.println("What is your message to encrypt/decipher?");
 		String messageText = scan.next();
+		messageText = messageText.toUpperCase();
+		String optimizedMessage = "";
+		
+		counter = 0;
+		while(counter < messageText.length()) //reading through keyword and comparing to alphabet
+		{
+			for(int scanAlpha = 0; scanAlpha < alphabet.length; scanAlpha++)
+			{
+				if(messageText.charAt(counter) == alphabet[scanAlpha]) //scan alphabet
+				{
+
+					optimizedMessage += alphabet[scanAlpha];
+				}
+				else{}//don't append the character as it is not a valid character
+			}
+			counter++;
+			
+		}
+		System.out.println("This is your optimized message: " + optimizedMessage);
+		
+		
+		
+		
+		
 
 /*******************************ENCRYPTION OR DECRYPTION SELECT*******************************************************/		
 		//Encryption or Decryption?
@@ -119,7 +138,18 @@ public class playfair
 
 /*****************************************ENCRYPTION******************************************************************/
 		//need to optimize the message by:
+		//prepare messageText for encryption by:
 		//replacing repeated digraphs with appropriate new message text before encrypting
+		String nextDigraph = ""; //keeps track of the next digraph to encrypt
+		System.out.println("Your message to encrypt: " + optimizedMessage);
+		/*1. Optimize the message for encryption by
+		 *1a. Organizing the message into digraphs
+		 *1b. Replacing repeated letters
+		 *2. Encrypt using the following rules:
+		 *2a. if letters in same row, shift right by one position (with wraparound)
+		 *2b. if letters in same column, shift down by one position (with wraparound)
+		 *2c. if letters are in neither the same row nor the same column, read in "box fashion"
+		 */
 		
 /*****************************************DECRYPTION******************************************************************/
 
