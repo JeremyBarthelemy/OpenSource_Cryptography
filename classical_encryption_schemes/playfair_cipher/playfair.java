@@ -1,4 +1,4 @@
-/*Author: Jeremy Barthelemy
+/*Author: Jeremy Barthélemy
  *Details: This is a very simple text implementation of the classical playfair encryption cipher.
  *This is open-source for educational purposes!  This cipher can be broken
  *extremely easily with modern computers so don't actually use it for encrypting
@@ -10,6 +10,9 @@
  *2. Optimize the message such that repeated characters are replaced accordingly (In progress, some issues)
  *3. Add the encryption
  *4. Add the decryption
+ *Known Issues:
+ *1. There will be added information generated at the end of a message for some cases (i.e. multiple Xes)
+ *  --> will add a fix for this later
  */
 import java.io.*;
 import java.util.Scanner;
@@ -23,10 +26,9 @@ public class playfair
 		String alphaToRead = "ABCDEFGHIKLMNOPQRSTUVWXYZ"; //string used for knowing the letters not in the keyword for placing into the playfair square
 		int counter = 0; //used for counting parsing the keyword string
 		String optimizedKeyword = ""; //used for storing the value of the improved keyword text
-		
 
-		System.out.println("Playfair Cipher in Java");
-		System.out.println("Would you like to encrypt a message or decrypt a message?");
+		System.out.println("Playfair Cipher in Java by Jeremy Barthélemy 2013");
+		System.out.println("Would you like to Encrypt a message or Decrypt a message?");
 		System.out.println("Enter 1 for Encryption and 2 for Decryption: ");
 		int x = 0;
 		Scanner scan = new Scanner(System.in);
@@ -64,7 +66,6 @@ public class playfair
 			//use the string.charAt(#) function to read through the string and if the char is not in the
 			//accepted list of letters (i.e. the alphabet for the English language, do not append this
 			//to our new string! :)
-
 		}
 		System.out.println("This is your optimized keyword: " + optimizedKeyword);
 
@@ -87,7 +88,6 @@ public class playfair
 					//if we have letters in optimizedKeyword, add that letter
 					optimizedKeyword = optimizedKeyword.replace(String.valueOf(optimizedKeyword.charAt(0)), "");
 					//remove that letter from optimizedKeyword
-						
 				}
 				else
 				{
@@ -148,6 +148,7 @@ public class playfair
 			System.out.println("Your message to encrypt: " + optimizedMessage);
 
 			//FIRST must optimize message by adding an X at the end if there are an odd number of characters
+			
 			if((optimizedMessage.length() % 2) == 1) //if there are an odd number of characters,
 			{
 				//append the 'X' character to the end so we have an even number of individual characters
@@ -157,23 +158,31 @@ public class playfair
 			//SECOND we must replace repeated letters in a digraph as such: LL becomes two new digraphs - LX followed by L and the next char
 			//step through optimized message for two characters...if they are not the same, append them to finalMessage
 			//if they are the same, fix and then append
-			//int finalCount = 0;
-			while(optimizedMessage.length() > 0)
+
+			while((optimizedMessage.length() > 0))
 			{
+				//System.out.println("From the top: " + optimizedMessage);
 				if(optimizedMessage.charAt(0) == optimizedMessage.charAt(1))//repeated characters in a digraph
 				{
-					System.out.println("Two repeated characters!");
-					optimizedMessage = optimizedMessage.replace(String.valueOf(optimizedMessage.charAt(0)),"");
-					optimizedMessage = optimizedMessage.replace(String.valueOf(optimizedMessage.charAt(0)),"");
+					//System.out.println("Two repeated characters: " + optimizedMessage.charAt(0) + ":" + optimizedMessage.charAt(1));
+					finalMessage += optimizedMessage.charAt(0);
+					finalMessage += 'X';
+					finalMessage += optimizedMessage.charAt(0);
 				}
 				else //two different characters in a digraph
 				{
 					finalMessage += optimizedMessage.charAt(0);
 					finalMessage += optimizedMessage.charAt(1);
-					optimizedMessage = optimizedMessage.replace(String.valueOf(optimizedMessage.charAt(0)),"");
-					optimizedMessage = optimizedMessage.replace(String.valueOf(optimizedMessage.charAt(0)),"");
-					System.out.println("FF: " + finalMessage);
+					//System.out.println("FF: " + finalMessage);
 				}
+				optimizedMessage = optimizedMessage.substring(2);
+			}
+			//Note: This is poorly coded and will result in extra characters in some cases -- ISSUE to fix later
+			if((finalMessage.length() % 2) == 1) //if there are an odd number of characters,
+			{
+				//append the 'X' character to the end so we have an even number of individual characters
+				finalMessage += 'X';
+				//System.out.println("new optimized message: " + optimizedMessage);
 			}
 			System.out.println("The final message to encrypt is: " + finalMessage);
 			/*2. Encrypt using the following rules:
@@ -181,6 +190,9 @@ public class playfair
 			*2b. if letters in same column, shift down by one position (with wraparound)
 			*2c. if letters are in neither the same row nor the same column, read in "box fashion"
 			*/
+			//we will need to scan for the location of characters through the key in order
+			//to determine which case to proceed with
+			System.out.println("Key[0][0] data: " + key[0][0]);
 		}
 		
 /*****************************************DECRYPTION******************************************************************/
