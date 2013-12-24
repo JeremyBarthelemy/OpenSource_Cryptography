@@ -29,6 +29,7 @@ public class playfair
 		System.out.println("What is your keyword?");
 		String keywordFromUser = scan.nextLine();
 		keywordFromUser = keywordFromUser.toUpperCase(); //convert to upper case
+		keywordFromUser = keywordFromUser.replace(String.valueOf("J"), "I");
 /*************************OPTIMIZING THE USER INPUT FOR KEY GENERATION********************************************/
 
 		System.out.println("Your keyword before 'optimizing' it: " + keywordFromUser);
@@ -107,21 +108,24 @@ public class playfair
 		String messageText = scan.next();
 		messageText = messageText.toUpperCase();
 		String optimizedMessage = "";
+		char[] alphabet2 = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 		
 		counter = 0;
 		while(counter < messageText.length()) //reading through keyword and comparing to alphabet
 		{
-			for(int scanAlpha = 0; scanAlpha < alphabet.length; scanAlpha++)
+			for(int scanAlpha = 0; scanAlpha < alphabet2.length; scanAlpha++)
 			{
-				if(messageText.charAt(counter) == alphabet[scanAlpha]) //scan alphabet
+				if(messageText.charAt(counter) == alphabet2[scanAlpha]) //scan alphabet
 				{
-
-					optimizedMessage += alphabet[scanAlpha];
+					if(alphabet2[scanAlpha] == 'J')
+					{
+						alphabet2[scanAlpha] = 'I'; // set all the J values to I 
+					}
+					optimizedMessage += alphabet2[scanAlpha];
 				}
 				else{}//don't append the character as it is not a valid character
 			}
 			counter++;
-			
 		}
 		System.out.println("This is your optimized message: " + optimizedMessage);
 		
