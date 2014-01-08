@@ -1,8 +1,10 @@
-Under Way: Simple Playfair Cipher in Java
-More to come very soon!
+Under Way: 
+Building:
+1). Catoblepas Crypto Network
+2). AES-512
+3). Playfair proof-of-concept
 
-Miscellaneous Crypto Tools will eventually be combined with greenflash to make an easily
-accessible crypto suite! :)
+Greenflash Linux-style command suite also in development
 
 Contact: j.l.barthel@gmail.com
 Please include in your subject OpenSource Cryptography to make sure I don't accidentally erase it!
