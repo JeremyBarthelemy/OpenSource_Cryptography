@@ -1,6 +1,0 @@
-
-========================================================================================================================================
-C:/Users/Jeremy/Desktop/ATHENa_W_0.6.4_2012-12-06/ATHENa_workspace/single_run/2013_05_12_Architecture2_15/xilinx/spartan3e_1/best_match
-	Looking for a best fit device...
-	ERROR: Synthesis Failed for current device with result - 1
-	Elapsed time for current run : 0d 0h:0m:16s
