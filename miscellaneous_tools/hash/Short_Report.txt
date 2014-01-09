@@ -1,0 +1,5 @@
+The revised code was programmed in Java and debugged using the JCreatorLE development environment.
+The purpose of the Java code was to generate test vectors for comparing with the ModelSim
+waveform based upon various stimuli produced by the testbench.
+Please note that in order to compile and run the Java code, it is necessary to change the name
+of the file to "hash.java"

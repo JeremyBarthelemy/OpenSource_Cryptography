@@ -1,0 +1,45 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;					  
+use IEEE.std_logic_unsigned.all;
+use ieee.STD_LOGIC_ARITH.all;
+
+ENTITY ROM_HW5 IS
+	GENERiC(w : INTEGER := 8);
+	PORT(
+			ADDRESS_IN : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+			DOUT : OUT STD_LOGIC_VECTOR(w-1 DOWNTO 0)
+	
+		);
+END ROM_HW5;
+
+ARCHITECTURE arch_ROM of ROM_HW5 IS
+SIGNAL TEMP1 : STD_LOGIC_VECTOR(w-1 DOWNTO 0) := (OTHERS => '0');
+SIGNAL TEMP2 : STD_LOGIC_VECTOR(w-1 DOWNTO 0);
+BEGIN
+	
+WITH ADDRESS_IN SELECT
+DOUT <= "10000001" WHEN "000",
+		"10000010" WHEN "001",
+		"10000100" WHEN "010",
+		"10001000" WHEN "011",
+		"10010000" WHEN "100",
+		"10100000" WHEN "101",
+		"11000000" WHEN "110",
+		"10000000" WHEN OTHERS;
+														  
+--Allows for cases with w /= 8	(Generic case)
+--	PROCESS(ADDRESS_IN)		  
+--	VARIABLE TESTING : INTEGER := 0;
+--	BEGIN
+--		WHILE (TEMP1 < ADDRESS_IN) LOOP
+--			TEMP1 <= TEMP1 + 1;
+--			TESTING := TESTING + 1;
+--		END LOOP;
+--		TEMP2(TESTING) <= '1';
+--		DOUT <= '1' & TEMP2(w-2 DOWNTO 0); 
+--	END PROCESS;
+
+END arch_ROM;	
+
+								  
+	
