@@ -1,0 +1,12 @@
+image1
+block diagram of a k-bit Ripple Carry Decrementer (RCD), implemented using
+internal resources of Xilinx Spartan 3 FPGAs, such as carry & control logic and 4-input
+Look-Up-Tables (LUTs)
+
+image2
+block diagram of a Bit Serial Decrementer (BSD), processing one bit of a k-bit
+input X per clock cycle
+
+image3
+block diagram of a Digit Serial Decrementer (DSD), processing one d-bit digit
+of a k-bit input X per clock cycle

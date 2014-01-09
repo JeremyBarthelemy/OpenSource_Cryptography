@@ -1,0 +1,31 @@
+#Read in SN, determine n
+S_array = [0, 0, 1, 1, 0, 1, 1, 1, 0]
+n = len(S_array)
+
+#Initializations
+var('D')
+CD = 1;L = 0;m = -1;BD = 1;N = 0;
+
+ci_array = 9*[0]
+
+SN = 0; TD = 0;
+
+print "sN, d, T(D), C(D), L, m, B(D), N";
+print "(-,-,-,1,0,-1,1,0)"
+while (N < n):
+    #print(S_array[N],  d,   TD,  CD,  L,  m,  BD,  N);
+    #d = (S_array[N] + sum(ci_array[i]*S_array[N-i],i,1,L)) % 2
+    #d = S_array[-1]
+    #d = (S_array[N]) % 2
+    
+    d = (S_array[N] + sum([ci_array[i]*S_array[N-i] for i in range(1,L)])) % 2
+
+    if (d==1):
+        TD = CD;
+        CD = CD + BD*(D^(N-m));
+        if(L <= (N/2)):
+            L = N + 1 - L;
+            m = N;
+            BD = TD;            
+    N = N + 1;
+    print(S_array[N],  d,   TD,  CD,  L,  m,  BD,  N);

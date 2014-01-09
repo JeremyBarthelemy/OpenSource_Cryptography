@@ -1,0 +1,65 @@
+# =============================================
+# ATHENA - Automated Tool for Hardware EvaluatioN.
+# Copyright © 2009 - 2012 CERG at George Mason University <cryptography.gmu.edu>.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see http://www.gnu.org/licenses
+# or write to the Free Software Foundation,Inc., 51 Franklin Street,
+# Fifth Floor, Boston, MA 02110-1301  USA.
+# =============================================
+
+#############################################################
+#
+# Configuration file for the GMU_Xilinx_optimization_1 application.
+#
+# See the ATHENa Tutorial for the full pseudocode of this application.
+#
+# Lines starting from # contain comments.
+#
+#############################################################
+
+
+#############################################################
+# Xilinx
+#############################################################
+#
+# REQUESTED_FREQ_IMPROVEMENT_STEPS:
+# <next requested frequency> = (1+<current step>/100)*<maximum achieved frequency>
+# The current step value is reused as long as the achieved frequency is equal or higher
+# than the requested frequency.
+# Otherwise, the algorithm moves to the next step from the list.
+#
+# XILINX_COST_TABLE_VALUES:
+# COST TABLE values determining the starting point of placement.
+# Format for a set =>  start number : step : end number;
+# The allowed range is from 1 to 100.
+
+#############################################################
+
+REQUESTED_FREQ_IMPROVEMENT_STEPS = 15%, 5%, 1%
+XILINX_COST_TABLE_VALUES = 1:20:100;
+
+
+#############################################################
+# Altera
+#
+# ALTERA_SEED_VALUES:
+# SEED values determining the starting point of placement.
+# Format for a set =>  start number : step : end number;
+# The allowed range is from 1 to 2^32-1.
+
+#############################################################
+
+ALTERA_SEED_VALUES = 1:2000:10000;
+
+

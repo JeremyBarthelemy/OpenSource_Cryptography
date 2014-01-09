@@ -1,0 +1,43 @@
+# =============================================
+# ATHENA - Automated Tool for Hardware EvaluatioN.
+# Copyright © 2009 - 2012 CERG at George Mason University <cryptography.gmu.edu>.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see http://www.gnu.org/licenses
+# or write to the Free Software Foundation,Inc., 51 Franklin Street,
+# Fifth Floor, Boston, MA 02110-1301  USA.
+# =============================================
+
+#############################################################
+# Configuration file for Placement search app
+#
+# -include # at the beginning for line comment
+# 
+#############################################################
+
+# Please enter the COST TABLE / SEED  values for the experiment.
+# USAGE:        Separate each set by semicolon. You can specify single numbers or sets
+#       Format for a set => start number : step : end number
+#       For Xilinx the range is 1 - 100.
+#       For Altera the range is 1 - 2^32-1.
+#       EXAMPLE:
+#               Entering 2; 4:4:40; 5; 65:11:99
+#               returns 2,4,8,12,16,20,24,28,32,36,40,5,65,76,87,98
+#
+#
+#       Incorrectly formatted items will be ignored!
+#
+	
+XILINX_COST_TABLE_VALUES = 1:20:100;
+
+ALTERA_SEED_VALUES = 1:2000:10000;

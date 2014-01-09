@@ -1,0 +1,177 @@
+# =============================================
+# ATHENA - Automated Tool for Hardware EvaluatioN.
+# Copyright © 2009 - 2012 CERG at George Mason University <cryptography.gmu.edu>.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see http://www.gnu.org/licenses
+# or write to the Free Software Foundation,Inc., 51 Franklin Street,
+# Fifth Floor, Boston, MA 02110-1301  USA.
+# =============================================
+
+#####################################################################################
+# This file was generated using xilinx_device_extractor script located under
+# /bin/utils folder. The information contain in this library come from
+# Xilinx's partgen.exe tool.
+#
+# Supported families for this library file are :
+# #
+#
+# Xilinx ____ 14.1
+#####################################################################################
+
+VENDOR = Xilinx
+#Device, Total Slices, Block RAMs, DSP, Dedicated Multipliers, Maximum User I/O
+
+
+ITEM_ORDER = SLICE, BRAM, DSP, MULT, IO
+
+FAMILY = artix7
+xc7a100tfgg676-3, 15850, 135, 240, 0, 300
+xc7a200tffg1156-3, 33650, 365, 740, 0, 500
+END_FAMILY
+
+FAMILY = artix7l
+xc7a100tlfgg676-2, 15850, 135, 240, 0, 300
+xc7a200tlffg1156-2, 33650, 365, 740, 0, 500
+END_FAMILY
+
+FAMILY = aspartan3
+xa3s50pqg208-4, 768, 4, 0, 4, 124
+xa3s200ftg256-4, 1920, 12, 0, 12, 173
+xa3s400fgg456-4, 3584, 16, 0, 16, 264
+xa3s1000fgg456-4, 7680, 24, 0, 24, 333
+xa3s1500fgg676-4, 13312, 32, 0, 32, 487
+END_FAMILY
+
+FAMILY = aspartan3a
+xa3s200aftg256-4, 1792, 16, 0, 16, 195
+xa3s400afgg400-4, 3584, 20, 0, 20, 311
+xa3s700afgg484-4, 5888, 20, 0, 20, 372
+xa3s1400afgg484-4, 11264, 32, 0, 32, 375
+END_FAMILY
+
+FAMILY = aspartan3adsp
+xa3sd1800afgg676-4, 16640, 84, 84, 0, 519
+END_FAMILY
+
+FAMILY = aspartan3e
+xa3s100etqg144-4, 960, 4, 0, 4, 108
+xa3s250eftg256-4, 2448, 12, 0, 12, 172
+xa3s500eftg256-4, 4656, 20, 0, 20, 190
+xa3s1200efgg400-4, 8672, 28, 0, 28, 304
+xa3s1600efgg484-4, 14752, 36, 0, 36, 376
+END_FAMILY
+
+FAMILY = aspartan6
+xa6slx4csg225-3, 600, 12, 8, 0, 132
+xa6slx9csg324-3, 1428, 32, 16, 0, 200
+xa6slx16csg324-3, 2276, 32, 32, 0, 232
+xa6slx25fgg484-3, 3756, 52, 38, 0, 266
+xa6slx25tfgg484-3, 3756, 52, 38, 0, 250
+xa6slx45fgg484-3, 6820, 116, 58, 0, 316
+xa6slx45tfgg484-3, 6820, 116, 58, 0, 296
+xa6slx75fgg484-3, 11660, 172, 132, 0, 280
+xa6slx75tfgg484-3, 11660, 172, 132, 0, 268
+xa6slx100fgg484-2, 15820, 268, 180, 0, 326
+END_FAMILY
+
+FAMILY = kintex7
+xc7k70tfbg676-3, 10250, 135, 240, 0, 300
+xc7k160tfbg676-3, 25350, 325, 600, 0, 400
+END_FAMILY
+
+FAMILY = kintex7l
+xc7k70tlfbg676-2, 10250, 135, 240, 0, 300
+xc7k160tlfbg676-2, 25350, 325, 600, 0, 400
+END_FAMILY
+
+FAMILY = spartan3
+xc3s50pq208-5, 768, 4, 0, 4, 124
+xc3s200ft256-5, 1920, 12, 0, 12, 173
+xc3s400fg456-5, 3584, 16, 0, 16, 264
+xc3s1000fg676-5, 7680, 24, 0, 24, 391
+xc3s1000lfg456-4, 7680, 24, 0, 24, 333
+xc3s1500fg676-5, 13312, 32, 0, 32, 487
+xc3s1500lfg676-4, 13312, 32, 0, 32, 487
+END_FAMILY
+
+FAMILY = spartan3a
+xc3s50aft256-5, 704, 3, 0, 3, 144
+xc3s50anftg256-5, 704, 3, 0, 3, 144
+xc3s200afg320-5, 1792, 16, 0, 16, 248
+xc3s200anftg256-5, 1792, 16, 0, 16, 195
+xc3s400afg400-5, 3584, 20, 0, 20, 311
+xc3s400anfgg400-5, 3584, 20, 0, 20, 311
+xc3s700afg484-5, 5888, 20, 0, 20, 372
+xc3s700anfgg484-5, 5888, 20, 0, 20, 372
+xc3s1400afg676-5, 11264, 32, 0, 32, 502
+xc3s1400anfgg676-5, 11264, 32, 0, 32, 502
+END_FAMILY
+
+FAMILY = spartan3adsp
+xc3sd1800afg676-5, 16640, 84, 84, 0, 519
+END_FAMILY
+
+FAMILY = spartan3e
+xc3s100etq144-5, 960, 4, 0, 4, 108
+xc3s250eft256-5, 2448, 12, 0, 12, 172
+xc3s500efg320-5, 4656, 20, 0, 20, 232
+xc3s1200efg400-5, 8672, 28, 0, 28, 304
+xc3s1600efg484-5, 14752, 36, 0, 36, 376
+END_FAMILY
+
+FAMILY = spartan6
+xc6slx4csg225-3, 600, 12, 8, 0, 132
+xc6slx9csg324-3, 1428, 32, 16, 0, 200
+xc6slx16csg324-3, 2276, 32, 32, 0, 232
+xc6slx25fgg484-3, 3756, 52, 38, 0, 266
+xc6slx25tfgg484-3, 3756, 52, 38, 0, 250
+xc6slx45fgg676-3, 6820, 116, 58, 0, 358
+xc6slx45tfgg484-3, 6820, 116, 58, 0, 296
+xc6slx75fgg676-3, 11660, 172, 132, 0, 408
+xc6slx75tfgg676-3, 11660, 172, 132, 0, 348
+END_FAMILY
+
+FAMILY = spartan6l
+xc6slx4lcsg225-1, 600, 12, 8, 0, 132
+xc6slx9lcsg324-1, 1428, 32, 16, 0, 200
+xc6slx16lcsg324-1, 2276, 32, 32, 0, 232
+xc6slx25lfgg484-1, 3756, 52, 38, 0, 266
+xc6slx45lfgg676-1, 6820, 116, 58, 0, 358
+xc6slx75lfgg676-1, 11660, 172, 132, 0, 408
+END_FAMILY
+
+FAMILY = virtex4
+xc4vfx12ff668-12, 5472, 36, 32, 0, 320
+xc4vlx15ff676-12, 6144, 48, 32, 0, 320
+xc4vlx25ff676-12, 10752, 72, 48, 0, 448
+xc4vsx25ff668-12, 10240, 128, 128, 0, 320
+END_FAMILY
+
+FAMILY = virtex5
+xc5vlx30ff676-3, 4800, 32, 32, 0, 400
+xc5vfx30tff665-3, 5120, 68, 64, 0, 360
+xc5vlx30tff665-3, 4800, 36, 32, 0, 360
+xc5vlx50ff1153-3, 7200, 48, 48, 0, 560
+xc5vlx50tff1136-3, 7200, 60, 48, 0, 480
+END_FAMILY
+
+FAMILY = virtex6
+xc6vlx75tff784-3, 11640, 156, 288, 0, 360
+END_FAMILY
+
+FAMILY = virtex6l
+xc6vlx75tlff784-1, 11640, 156, 288, 0, 360
+END_FAMILY
+
+END_VENDOR

@@ -1,0 +1,128 @@
+# =============================================
+# ATHENA - Automated Tool for Hardware EvaluatioN.
+# Copyright © 2009 - 2012 CERG at George Mason University <cryptography.gmu.edu>.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see http://www.gnu.org/licenses
+# or write to the Free Software Foundation,Inc., 51 Franklin Street,
+# Fifth Floor, Boston, MA 02110-1301  USA.
+# =============================================
+
+#################################################
+# DESIGN SOFTWARE
+#################################################
+
+ACTEL_SYNTHESIS_TOOL = SYNPLIFY
+
+#ALTERA_SYNTHESIS_TOOL = QUARTUS_MAP
+ALTERA_SYNTHESIS_TOOL = QUARTUS_MAP
+
+#XILINX_SYNTHESIS_TOOL =  XST
+XILINX_SYNTHESIS_TOOL = XST
+
+#################################################
+# ACTEL DESIGN SOFTWARE OPTIONS
+#################################################
+
+	ACTEL_SYNPLIFY_OPT =
+		# options of Synplify Pro for Actel FPGAs
+
+	END_OPT
+
+#################################################
+# ALTERA  DESIGN SOFTWARE OPTIONS
+#################################################
+
+	ALTERA_SYNPLIFY_OPT =
+		# options of Synplify Pro for Altera FPGAs
+
+	END_OPT
+
+	ALTERA_QUARTUS_MAP_OPT =
+		# options of Quartus for Altera FPGAs
+
+		#QUARTUS_OPTIMIZATION_TECHNIQUE BALANCED
+		--optimize=balanced
+
+	END_OPT
+
+	ALTERA_QUARTUS_FIT_OPT =
+		# options for  Altera Quartus_fit Implementation Tool
+
+		#FIT_ONLY_ONE_ATTEMPT ON
+		--one_fit_attempt=on
+
+		#FITTER_EFFORT "FAST FIT"  
+		--effort=fast
+
+		#adaptive strategy for register packing
+		--pack_register=auto
+
+	END_OPT
+
+#################################################
+# XILINX DESIGN SOFTWARE OPTIONS
+#################################################
+
+	XILINX_SYNPLIFY_OPT =
+		# options of Synplify Pro for Xilinx FPGAs
+		
+	END_OPT
+
+	XILINX_XST_OPT =
+		# options of Xilinx XST for Xilinx FPGAs
+
+		#optimization mode for synthesis: SPEED
+		-opt_mode speed
+
+		#effort level for XST synthesis tool: MEDIUM
+		-opt_level 1
+
+	END_OPT
+
+	XILINX_NGDBUILD_OPT =
+		# options of Xilinx NGDBUILD
+
+	END_OPT
+
+	XILINX_MAP_OPT =
+		# options of Xilinx MAP
+
+		#"cover mode" - optimization strategy for mapping tool
+		-cm area
+
+		#packing factor for slices, values range between 0 and 100
+		#0 (only related logic packing),1 (maximum packing of unrelated logic),100 (minimum packing of unrelated logic)
+		-c 100
+
+
+	END_OPT
+
+	XILINX_PAR_OPT =
+		# options of Xilinx PAR
+
+		#optimization level for place and route tool: STANDARD
+		-ol std
+
+	END_OPT
+
+	XILINX_TRACE_OPT =
+		# options of Xilinx PAR
+
+		#advanced timing analysis
+		-a 
+
+		#the –v option generates a verbose report. The report has the same root name as the input design and an extension .twr.
+		-v 3
+
+	END_OPT

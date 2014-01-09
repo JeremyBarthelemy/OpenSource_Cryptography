@@ -1,0 +1,1 @@
+-Architecture 2 will both synthesize and implement on the Virtex6 low-power device, but strangely Athena won’t accept it.

@@ -1,0 +1,6 @@
+(s_input => x"0000", y_in => x"0005", m_in => x"0051", s_result => x"0000"),		
+(s_input => x"0001", y_in => x"25A0", m_in => x"0158", s_result => x"0005"),		
+(s_input => x"0000", y_in => x"FFFF", m_in => x"FFFF", s_result => x"A6F8"),	
+(s_input => x"0001", y_in => x"FFFF", m_in => x"FFFF", s_result => x"FFFE"),		
+(s_input => x"0000", y_in => x"1010", m_in => x"0101", s_result => x"8000"),	
+(s_input => x"0001", y_in => x"0000", m_in => x"0000", s_result => x"1012")

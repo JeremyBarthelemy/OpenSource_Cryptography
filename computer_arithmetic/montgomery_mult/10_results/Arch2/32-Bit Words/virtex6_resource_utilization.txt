@@ -1,0 +1,83 @@
+***************************************************************************
+AFTER MAPPING:
+***************************************************************************
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:    0
+Slice Logic Utilization:
+  Number of Slice Registers:                 4,377 out of  93,120    4%
+    Number used as Flip Flops:               4,316
+    Number used as Latches:                      0
+    Number used as Latch-thrus:                  0
+    Number used as AND/OR logics:               61
+  Number of Slice LUTs:                      5,728 out of  46,560   12%
+    Number used as logic:                    5,337 out of  46,560   11%
+      Number using O6 output only:             655
+      Number using O5 output only:               0
+      Number using O5 and O6:                4,682
+      Number used as ROM:                        0
+    Number used as Memory:                       0 out of  16,720    0%
+    Number used exclusively as route-thrus:    391
+      Number with same-slice register load:    391
+      Number with same-slice carry load:         0
+      Number with other load:                    0
+
+Slice Logic Distribution:
+  Number of occupied Slices:                 1,534 out of  11,640   13%
+  Number of LUT Flip Flop pairs used:        6,059
+    Number with an unused Flip Flop:         2,916 out of   6,059   48%
+    Number with an unused LUT:                 331 out of   6,059    5%
+    Number of fully used LUT-FF pairs:       2,812 out of   6,059   46%
+    Number of unique control sets:               1
+    Number of slice register sites lost
+      to control set restrictions:               4 out of  93,120    1%
+IO Utilization:
+  Number of bonded IOBs:                       101 out of     240   42%
+***************************************************************************
+AFTER PLACE AND ROUTE:
+***************************************************************************
+Device Utilization Summary:
+
+Slice Logic Utilization:
+  Number of Slice Registers:                 4,377 out of  93,120    4%
+    Number used as Flip Flops:               4,316
+    Number used as Latches:                      0
+    Number used as Latch-thrus:                  0
+    Number used as AND/OR logics:               61
+  Number of Slice LUTs:                      5,728 out of  46,560   12%
+    Number used as logic:                    5,337 out of  46,560   11%
+      Number using O6 output only:             655
+      Number using O5 output only:               0
+      Number using O5 and O6:                4,682
+      Number used as ROM:                        0
+    Number used as Memory:                       0 out of  16,720    0%
+    Number used exclusively as route-thrus:    391
+      Number with same-slice register load:    391
+      Number with same-slice carry load:         0
+      Number with other load:                    0
+
+Slice Logic Distribution:
+  Number of occupied Slices:                 1,534 out of  11,640   13%
+  Number of LUT Flip Flop pairs used:        6,059
+    Number with an unused Flip Flop:         2,916 out of   6,059   48%
+    Number with an unused LUT:                 331 out of   6,059    5%
+    Number of fully used LUT-FF pairs:       2,812 out of   6,059   46%
+    Number of slice register sites lost
+      to control set restrictions:               0 out of  93,120    0%
+
+IO Utilization:
+  Number of bonded IOBs:                       101 out of     240   42%
+
+***************************************************************************
+POST PLACE & ROUTE TIMING ANALYSIS
+***************************************************************************
+Clock to Setup on destination clock CLOCK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+CLOCK          |    5.451|         |         |         |
+---------------+---------+---------+---------+---------+
+Maximum Frequency: 183.45MHz

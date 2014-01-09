@@ -1,0 +1,40 @@
+--Digit Serial Decrementer	   
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY DSD IS  
+	GENERIC(k : INTEGER := 256; d : INTEGER := 4);
+	PORT(
+			X : IN STD_LOGIC_VECTOR(d-1 DOWNTO 0);
+			START : IN STD_LOGIC;
+			CLK : IN STD_LOGIC;
+			C : OUT STD_LOGIC;
+			V : OUT STD_LOGIC;
+			S : OUT STD_LOGIC_VECTOR(d-1 DOWNTO 0)
+		);
+END DSD;
+
+ARCHITECTURE dsd_arch OF DSD IS
+SIGNAL REG_OUT : STD_LOGIC;
+SIGNAL MUX_OUT : STD_LOGIC;
+SIGNAL RCD_OUT : STD_LOGIC;
+
+BEGIN						  
+	
+RCD : ENTITY work.RCD(rcd_arch)
+		GENERIC MAP(k => d)
+		PORT MAP(X=>X,S=>S,C=>RCD_OUT,V=>V);
+		
+REG : ENTITY work.REG(reg_arch)
+		PORT MAP(D=>RCD_OUT, Q=>REG_OUT, ENABLE=>'1', RESET=>'0', CLOCK=>CLK);
+		
+
+C <= REG_OUT;
+
+WITH START SELECT
+MUX_OUT <= '0' WHEN '0',
+				REG_OUT WHEN OTHERS;
+
+	
+END dsd_arch;

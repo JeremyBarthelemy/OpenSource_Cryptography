@@ -1,0 +1,3 @@
+xilinx[imp][1][14.1][C:\Xilinx\14.1\ise_ds\ise\bin\nt][webpack][selected]
+xilinx[imp][2][14.1 64-bit][C:\Xilinx\14.1\ise_ds\ise\bin\nt64][designsuite][]
+CORE[8][8]

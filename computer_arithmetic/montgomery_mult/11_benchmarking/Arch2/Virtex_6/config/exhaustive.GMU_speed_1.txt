@@ -1,0 +1,185 @@
+# =============================================
+# ATHENA - Automated Tool for Hardware EvaluatioN.
+# Copyright © 2009 - 2012 CERG at George Mason University <cryptography.gmu.edu>.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see http://www.gnu.org/licenses
+# or write to the Free Software Foundation,Inc., 51 Franklin Street,
+# Fifth Floor, Boston, MA 02110-1301  USA.
+# =============================================
+
+# attempted target clock frequencies
+# specified as pairs
+#  	(target_clock_frequency_for_synthesis, target_clock_frequency_for_implementation)
+# 	(REQ_SYN_FREQ, REQ_IMP_FREQ)
+TARGET_CLK_FREQ = (DEFAULT, DEFAULT)
+
+# running through all combinations of options
+# independently of results
+# or only until target clock frequency is met
+#RUN_ALL_OPTIONS = yes | no
+RUN_ALL_OPTIONS = yes
+
+# number of best combinations of options
+# from LEVEL_1 for which we iterate through
+# options at LEVEL_2 (such as COST_TABLE/SEED)
+BEST_LEVEL_1_OPTION_SETS = 2
+
+
+# ======================================== #
+# OPTIONS FOR ALTERA FPGA's                #
+# ======================================== #
+ALTERA_OPTIONS_BEGIN
+
+	# ======================================== #
+	# LEVEL 1 OPTIONS #
+	# ======================================== #
+	LEVEL_1_OPTIONS_BEGIN
+	
+		#ALTERA_SYNTHESIS_TOOL = QUARTUS_MAP
+		ALTERA_SYNTHESIS_TOOL = QUARTUS_MAP
+		
+		# --------------------- #
+		# options of Altera QUARTUS_MAP
+		# --------------------- #
+		ALTERA_QUARTUS_MAP_OPT =
+			# options of Quartus for Altera Synthesis Tool
+			# QUARTUS OPTIMIZATION TARGET FOR SYNTHESIS = SPEED, AREA, BALANCED
+			# QUARTUS EFFORT FOR SYNTHESIS = AUTO, FAST
+			--optimize speed, area, balanced
+			--effort auto, fast
+		END_OPT
+		
+		# --------------------- #
+		# options of Altera QUARTUS_FIT
+		# --------------------- #
+		ALTERA_QUARTUS_FIT_OPT =
+			# options of Quartus for Altera Implementation Tool
+			# FIT_ONLY_ONE_ATTEMPT = ON
+			--one_fit_attempt on
+			# FITTER_EFFORT = "STANDARD FIT", "AUTO FIT", "FAST FIT" 
+			--effort standard, auto, fast 
+		END_OPT
+		
+	LEVEL_1_OPTIONS_END
+
+	# ======================================== #
+	# LEVEL 2 OPTIONS #
+	# ======================================== #
+	LEVEL_2_OPTIONS_BEGIN
+		
+		# --------------------- #
+		# options of Altera FIT
+		# --------------------- #
+		ALTERA_QUARTUS_FIT_OPT =
+
+			ALTERA_SEED_VALUES = 1:2000:10000;
+			# Please enter the COST TABLE / SEED  values for the experiment.
+			# USAGE:        Separate each set by semicolon. You can specify single numbers or sets
+			#       Format for a set => start number : step : end number
+			#       For Xilinx the range is 1 - 100.
+			#       For Altera the range is 1 - 2^32-1.
+			#       EXAMPLE:
+			#               Entering 2; 4:4:40; 5; 65:11:99
+			#               returns 2,4,8,12,16,20,24,28,32,36,40,5,65,76,87,98
+			#
+			#
+			#       Incorrectly formatted items will be ignored!
+			#
+		END_OPT
+
+	LEVEL_2_OPTIONS_END
+
+ALTERA_OPTIONS_END
+
+
+# ======================================== #
+# OPTIONS FOR XILINX FPGA's                #
+# ======================================== #
+XILINX_OPTIONS_BEGIN
+
+	# ======================================== #
+	# LEVEL 1 OPTIONS #
+	# ======================================== #
+	LEVEL_1_OPTIONS_BEGIN
+	
+		#XILINX_SYNTHESIS_TOO = XST
+		XILINX_SYNTHESIS_TOOL = XST
+
+		# --------------------- #
+		# options of Xilinx XST
+		# --------------------- #
+		XILINX_XST_OPT =
+			# options of Xilinx XST
+                        # OPTIMIZATION TARGET FOR SYNTHESIS = SPEED, AREA
+			opt_mode speed, area
+                        # MAXIMUM FANOUT = 100
+			max_fanout 100	
+		END_OPT
+
+		# --------------------- #
+		# options of Xilinx MAP
+		# --------------------- #
+		XILINX_MAP_OPT =
+			# options of Xilinx MAP
+                        # OPTIMIZATION TARGET FOR MAPPING = SPEED, AREA
+			cm area,speed 
+                        # OPTIMIZATION EFFORT FOR MAPPING = MEDIUM, HIGH
+			# ol med,high
+		END_OPT
+
+		# --------------------- #
+		# options of Xilinx PAR
+		# --------------------- #
+		XILINX_PAR_OPT =
+			# options of Xilinx PAR
+                        # OVERALL OPTIMIZATION EFFORT FOR PLACING & ROUTING = MEDIUM, HIGH
+			ol med,high
+                        # OPTIMIZATION EFFORT FOR PLACING = MEDIUM, HIGH
+			#pl med,high
+                        # OPTIMIZATION EFFORT FOR ROUTING = MEDIUM, HIGH
+			#rl med,high
+		END_OPT
+
+	LEVEL_1_OPTIONS_END
+
+	# ======================================== #
+	# LEVEL 2 OPTIONS #
+	# ======================================== #
+	LEVEL_2_OPTIONS_BEGIN
+		
+		# --------------------- #
+		# options of Xilinx XST
+		# --------------------- #
+		XILINX_PAR_OPT =
+			# options of Xilinx PAR
+			XILINX_COST_TABLE_VALUES = 1:20:100;
+			# Please enter the COST TABLE / SEED  values for the experiment.
+			# USAGE:        Separate each set by semicolon. You can specify single numbers or sets
+			#       Format for a set => start number : step : end number
+			#       For Xilinx the range is 1 - 100.
+			#       For Altera the range is 1 - 2^32-1.
+			#       EXAMPLE:
+			#               Entering 2; 4:4:40; 5; 65:11:99
+			#               returns 2,4,8,12,16,20,24,28,32,36,40,5,65,76,87,98
+			#
+			#
+			#       Incorrectly formatted items will be ignored!
+			#
+		END_OPT
+
+	LEVEL_2_OPTIONS_END
+
+XILINX_OPTIONS_END
+
+

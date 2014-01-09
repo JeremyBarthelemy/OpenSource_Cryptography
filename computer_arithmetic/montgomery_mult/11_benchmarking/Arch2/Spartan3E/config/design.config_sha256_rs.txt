@@ -1,0 +1,262 @@
+# =============================================
+# ATHENA - Automated Tool for Hardware EvaluatioN.
+# Copyright © 2009 - 2012 CERG at George Mason University <cryptography.gmu.edu>.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see http://www.gnu.org/licenses
+# or write to the Free Software Foundation,Inc., 51 Franklin Street,
+# Fifth Floor, Boston, MA 02110-1301  USA.
+# =============================================
+
+# =============================================
+# =============================================
+# Global Settings
+# =============================================
+# =============================================
+
+# work directory, used as a root for all result directories
+WORK_DIR = <ATHENa_workspace>
+
+# directory containing synthesizable source files for the project
+SOURCE_DIR = <examples/sha256_rs>
+
+# A file list containing list of files in the order suitable for synthesis and implementation
+# low level modules first, top level entity last
+SOURCE_LIST_FILE = source_list.txt
+
+# project name
+# it will be used in the names of result directories
+PROJECT_NAME = SHA256
+
+# =============================================
+# =============================================
+# Verification Settings 
+# =============================================
+# =============================================
+
+# FUNCTIONAL_VERFICATION_MODE = <on | off>
+FUNCTIONAL_VERIFICATION_MODE = <off>
+
+# directory containing compilable source files of testbench
+VERIFICATION_DIR = <examples/sha256_rs/tb>
+
+# A file containing a list of testbench files in the order suitable for compilation;
+# low level modules first, top level entity last.
+# Test vector files should be located in the same directory and listed
+# in the same file, unless fixed path is used. Please refer to tutorial for more detail.
+VERIFICATION_LIST_FILE = <tb_srcs.txt>
+
+# name of testbench's top level entity
+TB_TOP_LEVEL_ENTITY = <sha_tb>
+
+# name of testbench's top level architecture
+TB_TOP_LEVEL_ARCH = <behavior>
+
+# MAX_TIME_FUNCTIONAL_VERIFICATION = <$time $unit>
+#	supported unit are : ps, ns, us, and ms
+#	if blank, simulation will run until finishes. (No changes in signals, ie. clock is stopped and no more inputs coming in)
+MAX_TIME_FUNCTIONAL_VERIFICATION = <>
+
+# Perform only verification (synthesis and implementation parameters are ignored)
+# VERIFICATION_ONLY = <ON | OFF>
+VERIFICATION_ONLY = <off>
+
+# =============================================
+# =============================================
+# Synthesis and Implementation Settings
+# =============================================
+# =============================================
+
+# name of top level entity
+TOP_LEVEL_ENTITY =  sha256
+
+# name of top level architecture
+TOP_LEVEL_ARCH = rs_arch
+
+# name of clock net
+CLOCK_NET = clk
+
+#formula for latency
+LATENCY = TCLK*65
+
+#formula for throughput
+THROUGHPUT = 512/(TCLK*65)
+
+
+# The following 3 parameters: 
+#  APPLICATION
+#  OPTIMIZATION_TARGET
+#  OPTIONS,
+# determine which top level script is called,
+# and which options are used.
+
+# OPTIMIZATION_TARGET = speed | area | balanced
+OPTIMIZATION_TARGET = speed
+
+# OPTIONS = default | user
+OPTIONS = default
+
+# Top level script
+# APPLICATIONs :
+# single_run: 					single run through synthesis and implementation with options
+#             					defined in the file options.<OPTIONS>_<OPTIMIZATION_TARGET>
+#
+# exhaustive_search: 			multiple runs through synthesis and implementation
+#              					with constant options defined in options.<OPTIONS>_<OPTIMIZATION_TARGET>
+#              					and variable options defined in exhaustive_search.txt
+#
+# placement_search: 			multiple runs through synthesis and implementation 
+#                       		with different values of parameters determining the starting
+#                       		point of placement;
+#                       		variable options are defined in placement_search.txt
+#
+# frequency_search: 			multiple runs through synthesis and implementation;
+#                       		each subsequent run requests higher frequency than the last best run;
+#		        				application will stop when improvement steps are exhausted and no improvement is found.
+#                       		variable options are defined in frequency_search.txt
+	
+# GMU_Optimization_1:   		For Xilinx, it combines frequency_search and placement_search with 3 optimization targets
+# 								(Area, Speed and Balanced) and effort level. 
+#								For Altera, only placement_search and optimization_target are combined as not much can be gained 
+#								from frequency search.	
+#
+# GMU_Xilinx_optimization_1:    Performs similar operation to the Xilinx part in GMU_Optimization_1. However, instead of performing the  
+#								frequency_search and placement_search for each of the optimization targets, only one iteration is 
+#								performed for the optimization target that provides the best result.
+#
+# APPLICATION = single_run | exhaustive_search | placement_search | frequency_search | GMU_Optimization_1 | GMU_Xilinx_optimization_1
+
+APPLICATION = single_run
+
+
+# Data trimming mode used to reduce the size of your workspace directory. 
+#
+# zip - performs compression of all uncritical ATHENa files and all
+#       files created by synthesis and implementation tools with the exception of
+#       report files that are used by ATHENa for result extraction;
+# tiny_zip - performs the same operation as zip mode with the exception that all the subfolders in
+#			 the working run directory are deleted.
+# delete - removes the described above files permanently;
+# off - no trimming is performed.
+
+# TRIM_MODE = off | zip | tiny_zip | delete
+
+TRIM_MODE = tiny_zip
+
+# Data query mode used for database report generation.
+#
+# overall   Query all results within the same device family
+# generic   Query all results with the same family and generic
+# device    Query all results with the same family, generic and device
+#
+# DB_QUERY_MODE = off | overall | generic | device
+
+DB_QUERY_MODE = overall
+
+
+# Selection criterion for database query. This option will be ignored if DB_QUERY_MODE is set to off.
+# All area used for query are Slice and ALUT for Xilinx and Altera, respectively.
+#
+# throughput        Highest throughput
+# throughput_area   Highest throughput over area ratio
+# area              Smallest area
+# latency           Shortest latency
+# Latency_area      Smallest latency times area
+#
+# DB_CRITERIA = throughput | throughput_area | area | latency | latency_area
+
+DB_CRITERIA = throughput_area
+
+
+# =============================================================
+# the list of all FPGA devices targeted by a given application
+# for a given vendor
+# FPGA_VENDOR = Xilinx | Altera
+# END VENDOR is used to denote the end of FPGA vendor parameters
+
+
+# for a given family
+# FPGA_FAMILY = $family
+# END_FAMILY is used to denote the end of family parameters
+# $family denotes the family of given vendor
+
+# FPGA_DEVICES = <list of device names from $vendor_device_lib.txt separated by commas> | best_match | all
+# for best_match, parameters of the best match should be provided (MAX_UTILIZATION parameters)
+#
+# See $vendor_device_lib.txt located inside device_lib folder of your root directory for ATHENa supported families and devices.
+# Names of the family and device must be an exact match to $vendor_device_lib.txt to prevent any strange behavior.
+# Be aware that listed devices may not be supported by your tool. 
+# Please refer to your synthesis/implementation vendor's website for supported devices.
+# =============================================================
+		
+# commenting the next line removes all families of Xilinx
+FPGA_VENDOR = xilinx
+
+        #commenting the next line removes a given family
+	FPGA_FAMILY = spartan3
+		FPGA_DEVICES = best_match
+		SYN_CONSTRAINT_FILE = default
+		IMP_CONSTRAINT_FILE = default
+		REQ_SYN_FREQ = 120
+		REQ_IMP_FREQ = 100
+		MAX_SLICE_UTILIZATION = 0.8
+		MAX_BRAM_UTILIZATION = 0.8
+		MAX_MUL_UTILIZATION = 1
+		MAX_PIN_UTILIZATION = 0.9
+	END FAMILY
+
+        #commenting the next line removes a given family
+	FPGA_FAMILY = virtex5
+		FPGA_DEVICES = best_match
+		SYN_CONSTRAINT_FILE = default
+		IMP_CONSTRAINT_FILE = default
+		REQ_SYN_FREQ = 180
+		REQ_IMP_FREQ = 150
+		MAX_SLICE_UTILIZATION = 0.8
+		MAX_BRAM_UTILIZATION = 0
+		MAX_DSP_UTILIZATION = 0
+		MAX_PIN_UTILIZATION = 0.9
+	END FAMILY
+	
+	
+END VENDOR
+
+# commenting the next line removes all families of Altera
+FPGA_VENDOR = altera
+
+        #commenting the next line removes a given family
+	FPGA_FAMILY = Cyclone III
+		FPGA_DEVICES = best_match
+		SYN_CONSTRAINT_FILE = default
+		IMP_CONSTRAINT_FILE = default
+		REQ_IMP_FREQ =  120
+		MAX_LE_UTILIZATION = 0.8
+		MAX_MEMORY_UTILIZATION = 0.8
+		MAX_MUL_UTILIZATION = 1
+		MAX_PIN_UTILIZATION = 0.8
+	END FAMILY
+
+        #commenting the next line removes a given family
+	FPGA_FAMILY = Stratix III
+		FPGA_DEVICES = best_match
+		SYN_CONSTRAINT_FILE = default
+		IMP_CONSTRAINT_FILE = default
+		REQ_IMP_FREQ =  120
+		MAX_LOGIC_UTILIZATION = 0.8
+		MAX_MEMORY_UTILIZATION = 0.8
+		MAX_DSP_UTILIZATION = 0
+		MAX_MUL_UTILIZATION = 0
+		MAX_PIN_UTILIZATION = 0.8
+	END FAMILY
+	
+END VENDOR
